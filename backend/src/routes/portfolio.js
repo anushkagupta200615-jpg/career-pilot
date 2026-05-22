@@ -317,30 +317,6 @@ router.get('/', asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, portfolios, data: portfolios });
 }));
 
-const TOKEN_VALIDATORS = {
-  cloudflare: (token) => validateCloudflareToken(token),
-  github: (token) => validateGithubToken(token),
-  netlify: (token) => validateNetlifyToken(token),
-};
-
-/**
- * POST /api/portfolio/validate-token
- * Check whether a deploy provider token is valid.
- * Body: { provider: 'cloudflare' | 'github' | 'netlify', token?: string }
- * Cloudflare reads its token from the server environment — no token param needed.
- */
-router.post('/validate-token', verifyToken, asyncHandler(async (req, res) => {
-  const { provider, token } = req.body ?? {};
-
-  if (!provider || !TOKEN_VALIDATORS[provider]) {
-    throw new ApiError(400, `provider must be one of: ${Object.keys(TOKEN_VALIDATORS).join(', ')}`);
-  }
-
-  const result = await TOKEN_VALIDATORS[provider](token);
-
-  res.status(200).json({ success: true, provider, ...result });
-}));
-
 /**
  * POST /api/portfolio
  * Create a new portfolio with validated and sanitized content.
