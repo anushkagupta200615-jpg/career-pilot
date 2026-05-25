@@ -133,6 +133,7 @@ export function useVoiceToText({
                 if (continuous) {
                     // Auto-restart if continuous
                     setTimeout(() => {
+                        if (!isListeningRef.current || recognitionRef.current !== recognition) return;
                         try { recognition.start(); } catch (_) { /* ignore */ }
                     }, 150);
                 } else {
