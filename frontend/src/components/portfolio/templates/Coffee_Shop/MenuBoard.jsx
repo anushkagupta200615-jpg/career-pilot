@@ -71,8 +71,8 @@ export default function MenuBoard({ data }) {
   const profile = data?.personalInfo || defaultData.personalInfo;
   const categories = data?.menuCategories || defaultData.menuCategories;
 
-  // Active Category State
-  const [activeCategory, setActiveCategory] = useState("brewed-tech");
+  // Active Category State - dynamically initialized from categories list
+  const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "brewed-tech");
 
   // Receipt Order State
   const [orderItems, setOrderItems] = useState([]);
@@ -89,6 +89,32 @@ export default function MenuBoard({ data }) {
   const [brewProgress, setBrewProgress] = useState(0);
   const [brewStageText, setBrewStageText] = useState("");
   const [brewedCup, setBrewedCup] = useState(null);
+
+  // refs for timeout cleanup
+  const brewTimeoutsRef = useRef([]);
+  const inquiryTimeoutRef = useRef(null);
+
+  // Sync category if external categories list changes
+  useEffect(() => {
+    if (categories.length > 0 && !categories.some(c => c.id === activeCategory)) {
+      setActiveCategory(categories[0].id);
+    }
+  }, [categories]);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      brewTimeoutsRef.current.forEach(clearTimeout);
+      if (inquiryTimeoutRef.current) {
+        clearTimeout(inquiryTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const clearBrewTimeouts = () => {
+    brewTimeoutsRef.current.forEach(clearTimeout);
+    brewTimeoutsRef.current = [];
+  };
 
   // Add Item to Order
   const addToOrder = (item) => {
@@ -113,6 +139,7 @@ export default function MenuBoard({ data }) {
   // Simulate Coffee Brewing
   const handleBrew = () => {
     if (!brewBase || !brewFlavor || !brewSweetener) return;
+    clearBrewTimeouts();
     setIsBrewing(true);
     setBrewProgress(0);
     setBrewedCup(null);
@@ -126,11 +153,11 @@ export default function MenuBoard({ data }) {
     ];
 
     stages.forEach((stage, idx) => {
-      setTimeout(() => {
+      const tId = setTimeout(() => {
         setBrewStageText(stage.text);
         setBrewProgress((idx + 1) * 20);
         if (idx === stages.length - 1) {
-          setTimeout(() => {
+          const innerTId = setTimeout(() => {
             setIsBrewing(false);
             setBrewedCup({
               name: `The ${brewFlavor}-Steamed ${brewBase} ${brewSweetener}`,
@@ -139,8 +166,10 @@ export default function MenuBoard({ data }) {
               rating: "⭐⭐⭐⭐⭐"
             });
           }, 600);
+          brewTimeoutsRef.current.push(innerTId);
         }
       }, stage.time);
+      brewTimeoutsRef.current.push(tId);
     });
   };
 
@@ -148,8 +177,9 @@ export default function MenuBoard({ data }) {
   const handleSendInquiry = (e) => {
     e.preventDefault();
     if (!emailText.trim()) return;
+    if (inquiryTimeoutRef.current) clearTimeout(inquiryTimeoutRef.current);
     setInquirySubmitted(true);
-    setTimeout(() => {
+    inquiryTimeoutRef.current = setTimeout(() => {
       setShowInquiryModal(false);
       setOrderItems([]);
       setInquirySubmitted(false);
