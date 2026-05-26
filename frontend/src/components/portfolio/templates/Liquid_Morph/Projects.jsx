@@ -2,6 +2,8 @@ import React from 'react';
 import { Folder, ExternalLink, Github } from 'lucide-react';
 
 export default function Projects({ data }) {
+  const projects = Array.isArray(data.projects) ? data.projects : [];
+
   return (
     <div className="space-y-12">
       <div className="flex items-center gap-3">
@@ -10,7 +12,7 @@ export default function Projects({ data }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {data.projects.map((project, idx) => (
+        {projects.map((project, idx) => (
           <div key={idx} className="group relative bg-slate-900/40 border border-slate-800/80 rounded-[40px] overflow-hidden hover:border-purple-500/50 transition-all duration-500 flex flex-col z-10">
             
             {/* Aggressive Hover Liquid Background */}
@@ -34,7 +36,7 @@ export default function Projects({ data }) {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                {project.techStack.map((tech, i) => (
+                {(Array.isArray(project.techStack) ? project.techStack : []).map((tech, i) => (
                   <span key={i} className="text-xs font-mono text-purple-300 bg-purple-500/10 border border-purple-500/30 px-3 py-1 liquid-shape shadow-sm">
                     {tech}
                   </span>

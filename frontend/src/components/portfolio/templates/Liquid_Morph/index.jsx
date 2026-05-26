@@ -64,7 +64,7 @@ export default function LiquidMorphPortfolio() {
       </svg>
 
       {/* Global CSS for Liquid Animations & Gradient Shifts */}
-      <style dangerouslySetContent={{__html: `
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes hardcore-morph {
           0% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; }
           34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }

@@ -47,9 +47,18 @@ export default function Contact({ data }) {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 relative">
-          <input required type="text" placeholder="NODE_IDENTIFIER" className="w-full bg-slate-900/50 border border-slate-800/80 p-5 text-white font-mono text-sm focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-600 liquid-shape" />
-          <input required type="email" placeholder="SECURE_EMAIL_ROUTE" className="w-full bg-slate-900/50 border border-slate-800/80 p-5 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-600 liquid-shape-fast" />
-          <textarea required rows="4" placeholder="MESSAGE_PAYLOAD_DATA..." className="w-full bg-slate-900/50 border border-slate-800/80 p-5 text-white font-mono text-sm focus:outline-none focus:border-purple-500 transition-colors resize-none placeholder:text-slate-600 liquid-shape"></textarea>
+          <div className="space-y-2">
+            <label htmlFor="node-identifier" className="block text-xs text-slate-500 uppercase tracking-widest font-mono">NODE_IDENTIFIER</label>
+            <input id="node-identifier" required type="text" placeholder="NODE_IDENTIFIER" className="w-full bg-slate-900/50 border border-slate-800/80 p-5 text-white font-mono text-sm focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-600 liquid-shape" />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="secure-email-route" className="block text-xs text-slate-500 uppercase tracking-widest font-mono">SECURE_EMAIL_ROUTE</label>
+            <input id="secure-email-route" required type="email" placeholder="SECURE_EMAIL_ROUTE" className="w-full bg-slate-900/50 border border-slate-800/80 p-5 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-600 liquid-shape-fast" />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="message-payload-data" className="block text-xs text-slate-500 uppercase tracking-widest font-mono">MESSAGE_PAYLOAD_DATA</label>
+            <textarea id="message-payload-data" required rows="4" placeholder="MESSAGE_PAYLOAD_DATA..." className="w-full bg-slate-900/50 border border-slate-800/80 p-5 text-white font-mono text-sm focus:outline-none focus:border-purple-500 transition-colors resize-none placeholder:text-slate-600 liquid-shape"></textarea>
+          </div>
           
           <button type="submit" disabled={formState !== 'idle'} className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 text-white font-black uppercase tracking-widest py-5 px-8 hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:scale-[1.02] disabled:opacity-40 transition-all duration-300 flex items-center justify-center gap-3 liquid-shape relative overflow-hidden">
             {/* Melting inner glow on button hover */}

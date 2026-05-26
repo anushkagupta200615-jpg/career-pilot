@@ -38,7 +38,7 @@ export default function About({ data }) {
               <h4 className="relative text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-4xl font-black mb-1">{data.stats.projectsCompleted}</h4>
               <p className="relative text-xs font-mono text-slate-500 uppercase tracking-widest">Builds</p>
             </div>
-            <div className="p-6 bg-slate-900/40 border border-slate-800/60 rounded-[40px] hover:border-purple-500/50 transition-all duration-500 relative overflow-hidden group hidden md:block">
+            <div className="p-6 bg-slate-900/40 border border-slate-800/60 rounded-[40px] hover:border-purple-500/50 transition-all duration-500 relative overflow-hidden group">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 liquid-shape opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
               <h4 className="relative text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-4xl font-black mb-1">{data.stats.happyClients}</h4>
               <p className="relative text-xs font-mono text-slate-500 uppercase tracking-widest">Clients</p>

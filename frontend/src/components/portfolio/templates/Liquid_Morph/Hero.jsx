@@ -25,19 +25,19 @@ export default function Hero({ data }) {
         
         <div className="flex gap-4">
           {data.socials.github && (
-            <a href={data.socials.github} target="_blank" rel="noreferrer" className="p-3 bg-slate-900/80 border border-slate-800/80 rounded-full hover:border-indigo-500 hover:bg-indigo-500/20 text-slate-400 hover:text-indigo-400 transition-all duration-300 relative group overflow-hidden">
+            <a href={data.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="p-3 bg-slate-900/80 border border-slate-800/80 rounded-full hover:border-indigo-500 hover:bg-indigo-500/20 text-slate-400 hover:text-indigo-400 transition-all duration-300 relative group overflow-hidden">
               <div className="absolute inset-0 bg-indigo-500/30 liquid-shape opacity-0 group-hover:opacity-100" />
               <Github className="w-5 h-5 relative z-10" />
             </a>
           )}
           {data.socials.linkedin && (
-            <a href={data.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-slate-900/80 border border-slate-800/80 rounded-full hover:border-cyan-500 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-400 transition-all duration-300 relative group overflow-hidden">
+            <a href={data.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-3 bg-slate-900/80 border border-slate-800/80 rounded-full hover:border-cyan-500 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-400 transition-all duration-300 relative group overflow-hidden">
               <div className="absolute inset-0 bg-cyan-500/30 liquid-shape-fast opacity-0 group-hover:opacity-100" />
               <Linkedin className="w-5 h-5 relative z-10" />
             </a>
           )}
           {data.socials.twitter && (
-            <a href={data.socials.twitter} target="_blank" rel="noreferrer" className="p-3 bg-slate-900/80 border border-slate-800/80 rounded-full hover:border-purple-500 hover:bg-purple-500/20 text-slate-400 hover:text-purple-400 transition-all duration-300 relative group overflow-hidden">
+            <a href={data.socials.twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="p-3 bg-slate-900/80 border border-slate-800/80 rounded-full hover:border-purple-500 hover:bg-purple-500/20 text-slate-400 hover:text-purple-400 transition-all duration-300 relative group overflow-hidden">
               <div className="absolute inset-0 bg-purple-500/30 liquid-shape opacity-0 group-hover:opacity-100" />
               <Twitter className="w-5 h-5 relative z-10" />
             </a>
