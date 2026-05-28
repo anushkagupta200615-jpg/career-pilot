@@ -10,6 +10,17 @@ import {
 } from 'lucide-react';
 import data from '../../../../data/dummy_data.json';
 
+const ALLOWED_PROTOCOLS = ['http:', 'https:', 'mailto:'];
+const safeUrl = (url) => {
+  if (!url) return '#';
+  try {
+    const { protocol } = new URL(url);
+    return ALLOWED_PROTOCOLS.includes(protocol) ? url : '#';
+  } catch {
+    return '#';
+  }
+};
+
 const FIGMA_BLUE = '#0d99ff';
 const FIGMA_PURPLE = '#a259ff';
 const FIGMA_GREEN = '#14ae5c';
@@ -191,7 +202,7 @@ function ProjectCard({ project, index }) {
         </div>
         <div className="flex gap-2">
           <a
-            href={project.liveUrl}
+            href={safeUrl(project.liveUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-[10px] font-medium text-[#0d99ff] hover:text-white transition-colors"
@@ -199,7 +210,7 @@ function ProjectCard({ project, index }) {
             <Globe size={10} /> Live
           </a>
           <a
-            href={project.githubUrl}
+            href={safeUrl(project.githubUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-[10px] font-medium text-[#b3b3b3] hover:text-white transition-colors"
@@ -655,7 +666,7 @@ export default function FigmaCanvas() {
                       ].map(({ icon: Icon, href }, i) => (
                         <a
                           key={i}
-                          href={href}
+                          href={safeUrl(href)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#a259ff]/20 flex items-center justify-center text-[#ababab] hover:text-[#a259ff] transition-all"
@@ -975,7 +986,7 @@ export default function FigmaCanvas() {
 
                       <div className="space-y-3">
                         <a
-                          href={`mailto:${data.socials.email}`}
+                          href={safeUrl(`mailto:${data.socials.email}`)}
                           className="flex items-center gap-3 text-sm text-[#b3b3b3] hover:text-[#14ae5c] transition-colors group"
                         >
                           <div className="w-8 h-8 rounded-lg bg-[#14ae5c]/10 flex items-center justify-center group-hover:bg-[#14ae5c]/20 transition-colors">
@@ -984,7 +995,7 @@ export default function FigmaCanvas() {
                           {data.socials.email}
                         </a>
                         <a
-                          href={data.socials.github}
+                          href={safeUrl(data.socials.github)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-3 text-sm text-[#b3b3b3] hover:text-[#14ae5c] transition-colors group"
@@ -995,7 +1006,7 @@ export default function FigmaCanvas() {
                           GitHub
                         </a>
                         <a
-                          href={data.socials.linkedin}
+                          href={safeUrl(data.socials.linkedin)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-3 text-sm text-[#b3b3b3] hover:text-[#14ae5c] transition-colors group"
@@ -1006,7 +1017,7 @@ export default function FigmaCanvas() {
                           LinkedIn
                         </a>
                         <a
-                          href={data.socials.twitter}
+                          href={safeUrl(data.socials.twitter)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-3 text-sm text-[#b3b3b3] hover:text-[#14ae5c] transition-colors group"
