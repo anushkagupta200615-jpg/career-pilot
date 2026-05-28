@@ -374,6 +374,12 @@ export default function TemplateGallery() {
         portfolioTitle={selectedPortfolioTitle}
       />
 
+      <TemplatePreviewModal
+        templateId={previewTemplateId}
+        isOpen={Boolean(previewTemplateId)}
+        onClose={() => setPreviewTemplateId(null)}
+      />
+
       {/* Holographic Theme */}
       <div className="mt-12">
         <div className="mb-4 flex items-center gap-3 px-1">
