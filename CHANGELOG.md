@@ -1,3 +1,11 @@
+# [1.134.0](https://github.com/anurag3407/career-pilot/compare/v1.133.1...v1.134.0) (2026-06-03)
+
+
+### Features
+
+* complete High Fashion portfolio template with all sections and mobile layout ([152e32f](https://github.com/anurag3407/career-pilot/commit/152e32f99a07ceda04f5c7e0f30c51bbb19d836d))
+* implement High Fashion theme About section with editorial two-column layout ([0c5551a](https://github.com/anurag3407/career-pilot/commit/0c5551aa5c9382c58f6be5157b66c3504935e1f1)), closes [#1553](https://github.com/anurag3407/career-pilot/issues/1553)
+
 ## [1.133.1](https://github.com/anurag3407/career-pilot/compare/v1.133.0...v1.133.1) (2026-06-03)
 
 
