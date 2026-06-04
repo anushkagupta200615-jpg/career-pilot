@@ -1,3 +1,10 @@
+## [1.145.2](https://github.com/anurag3407/career-pilot/compare/v1.145.1...v1.145.2) (2026-06-04)
+
+
+### Bug Fixes
+
+* **logging:** log presence-only config summary instead of raw env values ([6fdd893](https://github.com/anurag3407/career-pilot/commit/6fdd893cb3d5eaf9183c8aa660d4d6eb29d45947)), closes [#2884](https://github.com/anurag3407/career-pilot/issues/2884)
+
 ## [1.145.1](https://github.com/anurag3407/career-pilot/compare/v1.145.0...v1.145.1) (2026-06-04)
 
 
