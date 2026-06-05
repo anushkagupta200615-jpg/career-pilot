@@ -1,3 +1,16 @@
+# [1.155.0](https://github.com/anurag3407/career-pilot/compare/v1.154.0...v1.155.0) (2026-06-05)
+
+
+### Bug Fixes
+
+* add accessible project action links ([291fc4f](https://github.com/anurag3407/career-pilot/commit/291fc4ff991ab68098135d5be6cde0a2c2aa95dc))
+
+
+### Features
+
+* add terminal CLI projects section ([4992be0](https://github.com/anurag3407/career-pilot/commit/4992be0343ace8d94ad9ddacf169c205c5df0828))
+* create Terminal CLI hero section ([57b4460](https://github.com/anurag3407/career-pilot/commit/57b4460d4c01f3191c8e8b6b112ad39146b49554))
+
 # [1.154.0](https://github.com/anurag3407/career-pilot/compare/v1.153.0...v1.154.0) (2026-06-05)
 
 
