@@ -160,41 +160,23 @@ function TemplateCard({ template, hovered, onHover, onLeave, onUse, aiDraft }) {
       }}
       className="bg-card rounded-2xl overflow-hidden border border-border flex flex-col justify-between cursor-pointer"
     >
-      <div className="overflow-hidden relative bg-background h-52">
-        {template.isComplete ? (
-          <div
-            className="absolute top-0 left-0 origin-top-left pointer-events-none"
-            style={{
-              width: '1280px',
-              height: '800px',
-              transform: 'scale(0.3)',
-            }}
-          >
-            <iframe
-              src={`/preview/${template.id}`}
-              className="w-full h-full border-none pointer-events-none"
-              title={template.title}
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin"
-            />
-          </div>
-        ) : (
-          <motion.img
-            src={template.image}
-            alt={template.title}
-            className="w-full h-52 object-cover object-top"
-            variants={{
-              rest: {
-                scale: 1,
-                transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-              },
-              hover: {
-                scale: 1.08,
-                transition: { type: 'spring', stiffness: 200, damping: 25 },
-              },
-            }}
+      <div className="overflow-hidden relative bg-background aspect-[16/10]">
+        <div
+          className="absolute top-0 left-0 origin-top-left pointer-events-none"
+          style={{
+            width: '500%',
+            height: '500%',
+            transform: 'scale(0.2)',
+          }}
+        >
+          <iframe
+            src={`/preview/${template.id}`}
+            className="w-full h-full border-none pointer-events-none"
+            title={template.title}
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
           />
-        )}
+        </div>
         <motion.div
           className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"
           variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
