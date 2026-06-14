@@ -1,3 +1,15 @@
+# [1.238.0](https://github.com/anurag3407/career-pilot/compare/v1.237.0...v1.238.0) (2026-06-14)
+
+
+### Bug Fixes
+
+* resolve templates.js merge conflict ([72ed22c](https://github.com/anurag3407/career-pilot/commit/72ed22c683203bfc5f29649ed0c4bf6db9d70ab4))
+
+
+### Features
+
+* add Physics Engine Gravity Drop portfolio template ([3bd87b1](https://github.com/anurag3407/career-pilot/commit/3bd87b14d371dfcfca5de9576d0009d7dee0f4aa))
+
 # [1.237.0](https://github.com/anurag3407/career-pilot/compare/v1.236.0...v1.237.0) (2026-06-14)
 
 
