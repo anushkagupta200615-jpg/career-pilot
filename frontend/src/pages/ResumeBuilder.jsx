@@ -417,18 +417,6 @@ useEffect(() => {
     ];
   }, [experience, education, projects]);
 
-  const saveVersion = React.useCallback(() => {
-    const newVersion = {
-      id: Date.now(),
-      timestamp: new Date().toLocaleString(),
-      content: typeof generateMarkdown === 'function' ? generateMarkdown() : "",
-    };
-    setResumeVersions(prev => [newVersion, ...prev]);
-    if (typeof toast !== 'undefined') {
-      toast.success("Resume version layout tracked successfully!");
-    }
-  }, [experience, education, projects, personal, skills, generateMarkdown]);
-
   const restoreVersion = React.useCallback((version) => {
     setSelectedVersion(version);
     if (typeof toast !== 'undefined') {
@@ -635,6 +623,17 @@ useEffect(() => {
     return md
   }
 
+  const saveVersion = React.useCallback(() => {
+    const newVersion = {
+      id: Date.now(),
+      timestamp: new Date().toLocaleString(),
+      content: typeof generateMarkdown === 'function' ? generateMarkdown() : "",
+    };
+    setResumeVersions(prev => [newVersion, ...prev]);
+    if (typeof toast !== 'undefined') {
+      toast.success("Resume version layout tracked successfully!");
+    }
+  }, [experience, education, projects, personal, skills, generateMarkdown]);
 
   const handleGenerate = async () => {
     try {
