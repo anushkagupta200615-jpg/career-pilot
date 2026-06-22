@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import collaborationRoutes from './routes/collaboration.js';
+import githubReadmeRoutes from './routes/githubReadme.js';
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -301,6 +302,7 @@ app.use('/api/payments', paymentRoutes);
     console.warn('⚠️ Payment routes disabled:', error.message);
 }
 app.use('/api/portfolio', portfolioRoutes);
+app.use('/api/github/readme', githubReadmeRoutes);
 app.use('/api/user-profiles', userProfileRoutes);
 app.use('/api/gdpr', gdprRoutes);
 app.use('/api/auth/2fa', twoFactorRoutes);

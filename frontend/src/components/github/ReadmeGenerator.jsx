@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
+import { githubReadmeApi } from '../../services/api';
 
 const SAMPLE_PROMPT_PLACEHOLDER = `Describe your project...
 e.g. "A React dashboard for tracking crypto portfolios with live price updates, charts, and portfolio analytics."`;
@@ -36,7 +37,7 @@ MIT
 `;
 
 
-export default function ReadmeGenerator() {
+export default function ReadmeGenerator({ onApply, onCancel }) {
   const [prompt, setPrompt] = useState("");
   const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
   const [loading, setLoading] = useState(false);
@@ -50,28 +51,11 @@ export default function ReadmeGenerator() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          messages: [{
-            role: "user",
-            content: `Generate a comprehensive, professional README.md for the following project. Use proper Markdown formatting with headers, code blocks, badges where appropriate, and well-structured sections (Overview, Features, Installation, Usage, Contributing, License). Make it engaging and developer-friendly.
-
-Project description: ${prompt}
-
-Return ONLY the raw markdown content, no explanations.`
-          }]
-        })
-      });
-      const data = await response.json();
-      const text = data.content?.map(b => b.text || "").join("") || "";
-      if (text) setMarkdown(text);
+      const data = await githubReadmeApi.generate(prompt);
+      if (data.markdown) setMarkdown(data.markdown);
       else setError("No content returned. Please try again.");
     } catch (e) {
-      setError("Generation failed. Check your connection and try again.");
+      setError(e.message || "Generation failed. Check your connection and try again.");
     } finally {
       setLoading(false);
     }
